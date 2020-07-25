@@ -1,12 +1,14 @@
 package org.shimabuku.view;
 
 import org.shimabuku.controller.EmailController;
+import org.shimabuku.model.Email;
 import org.shimabuku.model.InboxActions;
 import org.shimabuku.model.User;
 import org.shimabuku.service.InMemoryInboxData;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class EmailView {
     private EmailController ctrEmail;
@@ -110,6 +112,20 @@ public class EmailView {
     private void checkInbox() {
         System.out.println();
         System.out.println("Here are your emails " + activeUser.getName() + " :");
+        List<Email> emails = ctrEmail.checkInbox();
+        AtomicInteger count = new AtomicInteger();
+        emails.forEach(e -> {
+            System.out.println("---------------");
+            System.out.println("Message #" + count.incrementAndGet());
+            System.out.println("---------------");
+            System.out.println("Title: " + e.getTitle());
+            System.out.println();
+            System.out.println("Message:");
+            System.out.println(e.getMessage());
+            System.out.println();
+            System.out.println("From: " + e.getSender().getName());
+            System.out.println("---------------");
+        });
     }
     //endregion
 }

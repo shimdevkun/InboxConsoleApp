@@ -24,9 +24,9 @@ public class App
         System.out.println("Please select a user: ");
         System.out.println();
 
-        userView.logIn(1);
+        userView.logIn(4);
         System.out.println();
-        EmailView emailView = new EmailView(inboxData, 1);
+        EmailView emailView = new EmailView(inboxData, 4);
         emailView.printActions();
     }
 }

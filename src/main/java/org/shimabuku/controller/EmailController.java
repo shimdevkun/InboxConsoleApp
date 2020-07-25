@@ -1,5 +1,6 @@
 package org.shimabuku.controller;
 
+import org.shimabuku.model.Email;
 import org.shimabuku.model.InboxActions;
 import org.shimabuku.model.User;
 import org.shimabuku.service.InMemoryInboxData;
@@ -31,9 +32,11 @@ public class EmailController {
         return activeUser;
     }
 
-    //  Transforms 'x. Inbox choice' to INBOX_CHOICE
-    //  and returns the corresponding inbox action
     public InboxActions getAction(int pos) {
         return  InboxActions.values()[pos - 1];
+    }
+
+    public List<Email> checkInbox() {
+        return db.getAllEmailsFrom(activeUser.getUserId());
     }
 }
