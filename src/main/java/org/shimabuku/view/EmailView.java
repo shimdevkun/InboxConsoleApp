@@ -15,26 +15,29 @@ public class EmailView {
 
     public EmailView(InMemoryInboxData inboxData, int activeUserId) {
         ctrEmail = new EmailController(inboxData, activeUserId);
+        activeUser = ctrEmail.getActiveUser();
         scanner = new Scanner(System.in).useDelimiter("\n");
-    }
-
-    public void createEmail() {
-        System.out.println("You've chosen to send an email");
-        System.out.println("Enter a title: ");
-        String title = scanner.next();
     }
 
     public void printActions() {
         System.out.println("Select an action:");
         System.out.println("1. Send email");
+        System.out.println("2. Check inbox");
 
-        while (scanner.hasNext() && !scanner.hasNextInt()) {
-            System.out.println("Please enter a number");
-            scanner.next();
+        int option = 1;
+        while (scanner.hasNext()) {
+            if (!scanner.hasNextInt())
+                System.out.println("Please enter a number");
+            else {
+                option = Integer.parseInt(scanner.next());
+                if (option < 0 || option > InboxActions.values().length) {
+                    System.out.println("Please enter a valid number");
+                } else break;
+            }
         }
 
-        scanner.next();
-        performAction(InboxActions.SEND_EMAIL);
+        InboxActions action = ctrEmail.getAction(option);
+        performAction(action);
     }
 
     private void performAction(InboxActions action) {
@@ -42,9 +45,13 @@ public class EmailView {
             case SEND_EMAIL:
                 sendEmail();
                 break;
+            case CHECK_INBOX:
+                checkInbox();
+                break;
         }
     }
 
+    //region sendEmail
     private void sendEmail() {
         System.out.println();
         User receiver = setReceiver();
@@ -97,4 +104,12 @@ public class EmailView {
         }
         return null;
     }
+    //endregion
+
+    //region checkInbox
+    private void checkInbox() {
+        System.out.println();
+        System.out.println("Here are your emails " + activeUser.getName() + " :");
+    }
+    //endregion
 }
