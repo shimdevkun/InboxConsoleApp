@@ -28,12 +28,14 @@ public class EmailView {
 
         int option = 1;
         while (scanner.hasNext()) {
-            if (!scanner.hasNextInt())
-                System.out.println("Please enter a number");
+            if (!scanner.hasNextInt()) {
+                System.out.println("Please enter a number.");
+                scanner.next();
+            }
             else {
                 option = Integer.parseInt(scanner.next());
                 if (option < 0 || option > InboxActions.values().length) {
-                    System.out.println("Please enter a valid number");
+                    System.out.println("Please enter a valid number.");
                 } else break;
             }
         }
