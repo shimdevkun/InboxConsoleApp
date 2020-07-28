@@ -14,17 +14,21 @@ public class App
 
     public static void main( String[] args )
     {
-        UserView userView = new UserView(inboxData);
-        userView.welcomeUser();
+        while (true) {
+            UserView userView = new UserView(inboxData);
+            userView.welcomeUser();
 
-        int userId = 0;
-        while (userView.isValidUser(userId)) {
-            userView.printUserNotFoundError();
-            userId = 1;
+            System.out.println();
+            EmailView emailView = new EmailView(inboxData, 4);
+            while (emailView.isLoggedIn()) {
+                emailView.printActions();
+                System.out.println();
+            }
+            System.out.println();
+            System.out.println();
+            System.out.println("---------------");
+            System.out.println();
+            System.out.println();
         }
-        userView.logIn(4);
-        System.out.println();
-        EmailView emailView = new EmailView(inboxData, 4);
-        emailView.printActions();
     }
 }

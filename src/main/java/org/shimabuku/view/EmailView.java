@@ -25,6 +25,7 @@ public class EmailView {
         System.out.println("Select an action:");
         System.out.println("1. Send email");
         System.out.println("2. Check inbox");
+        System.out.println("3. Log out");
 
         int option = 1;
         while (scanner.hasNext()) {
@@ -52,7 +53,15 @@ public class EmailView {
             case CHECK_INBOX:
                 checkInbox();
                 break;
+            case LOG_OUT:
+                logOut();
+                break;
         }
+    }
+
+    private void logOut() {
+        System.out.println("User " + activeUser.getName() + " has successfully logged out.");
+        activeUser = null;
     }
 
     //region sendEmail
@@ -128,6 +137,10 @@ public class EmailView {
             System.out.println("From: " + e.getSender().getName());
             System.out.println("---------------");
         });
+    }
+
+    public boolean isLoggedIn() {
+        return activeUser != null;
     }
     //endregion
 }
