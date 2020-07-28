@@ -1,5 +1,6 @@
 package org.shimabuku;
 
+import org.shimabuku.model.User;
 import org.shimabuku.service.*;
 import org.shimabuku.view.EmailView;
 import org.shimabuku.view.UserView;
@@ -19,7 +20,7 @@ public class App
             userView.welcomeUser();
 
             System.out.println();
-            EmailView emailView = new EmailView(inboxData, 4);
+            EmailView emailView = new EmailView(inboxData, userView.getUserId());
             while (emailView.isLoggedIn()) {
                 emailView.printActions();
                 System.out.println();

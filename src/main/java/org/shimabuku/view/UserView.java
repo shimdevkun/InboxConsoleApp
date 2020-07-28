@@ -62,6 +62,10 @@ public class UserView {
         printWelcomeMessage();
     }
 
+    public int getUserId() {
+        return ctrUser.getActiveUser().getUserId();
+    }
+
     private void printWelcomeMessage() {
         System.out.println("You are logged in as " + ctrUser.getActiveUser().getName() + ".");
     }
