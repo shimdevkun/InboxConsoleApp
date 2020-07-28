@@ -67,7 +67,11 @@ public class EmailView {
     //region sendEmail
     private void sendEmail() {
         System.out.println();
-        User receiver = setReceiver();
+
+        User receiver;
+        do { receiver = setReceiver(); }
+        while (receiver == null);
+
         String title = setTitle();
         String message = setMessage();
         ctrEmail.create(title, message, receiver);
@@ -80,7 +84,7 @@ public class EmailView {
 
     private User setReceiver() {
         List<User> users = ctrEmail.setReceiver();
-        System.out.println("Choose a receiver:");
+        System.out.println("Choose a receiver (1 to " + users.size() + "):");
         users.forEach(u -> System.out.println(u.getUserId() + ". " + u.getName()));
 
         while (scanner.hasNext() && !scanner.hasNextInt()) {
