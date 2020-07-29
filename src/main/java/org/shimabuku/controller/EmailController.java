@@ -6,6 +6,7 @@ import org.shimabuku.model.User;
 import org.shimabuku.service.InMemoryInboxData;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EmailController {
     private InMemoryInboxData db;
@@ -38,5 +39,10 @@ public class EmailController {
 
     public List<Email> checkInbox() {
         return db.getAllEmailsFrom(activeUser.getUserId());
+    }
+
+    public int getNewEmailsNumber() {
+        return (int) db.getAllEmailsFrom(activeUser.getUserId()).stream()
+                .filter(e -> !e.isRead()).count();
     }
 }

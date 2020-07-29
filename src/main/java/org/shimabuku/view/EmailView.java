@@ -130,8 +130,10 @@ public class EmailView {
         List<Email> emails = ctrEmail.checkInbox();
         AtomicInteger count = new AtomicInteger();
         emails.forEach(e -> {
+            String newTag = "";
+            if (!e.isRead()) newTag = " (NEW)";
             System.out.println("---------------");
-            System.out.println("Message #" + count.incrementAndGet());
+            System.out.println("Message #" + count.incrementAndGet() + newTag);
             System.out.println("---------------");
             System.out.println("Title: " + e.getTitle());
             System.out.println();
@@ -140,11 +142,22 @@ public class EmailView {
             System.out.println();
             System.out.println("From: " + e.getSender().getName());
             System.out.println("---------------");
+            e.setIsRead();
         });
     }
 
     public boolean isLoggedIn() {
         return activeUser != null;
+    }
+
+    public void printNewEmails() {
+        int newEmails = ctrEmail.getNewEmailsNumber();
+        if (newEmails == 0)
+            System.out.println("No new emails");
+        else if (newEmails == 1)
+            System.out.println("You have " + newEmails + " new email");
+        else
+            System.out.println("You have " + newEmails + " new emails");
     }
     //endregion
 }

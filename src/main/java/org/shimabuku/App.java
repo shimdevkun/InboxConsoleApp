@@ -21,6 +21,7 @@ public class App
 
             System.out.println();
             EmailView emailView = new EmailView(inboxData, userView.getUserId());
+            emailView.printNewEmails();
             while (emailView.isLoggedIn()) {
                 emailView.printActions();
                 System.out.println();

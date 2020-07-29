@@ -6,6 +6,7 @@ public class Email {
     private String message;
     private User receiver;
     private User sender;
+    private boolean isRead;
 
     public Email() {}
 
@@ -15,6 +16,7 @@ public class Email {
         this.message = message;
         this.receiver = receiver;
         this.sender = sender;
+        this.isRead = false;
     }
 
     public int getId() { return emailId; }
@@ -40,4 +42,8 @@ public class Email {
 
     public User getSender() { return sender; }
     public void setSender(User sender) { this.sender = sender; }
+
+    public boolean isRead() {return isRead; }
+
+    public void setIsRead() { isRead = true;}
 }
