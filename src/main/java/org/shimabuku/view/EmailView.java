@@ -80,6 +80,7 @@ public class EmailView {
 
     private void printSuccessMessage() {
         System.out.println("Your email was send with success.");
+        System.out.println();
     }
 
     private User setReceiver() {
@@ -126,24 +127,31 @@ public class EmailView {
     //region checkInbox
     private void checkInbox() {
         System.out.println();
-        System.out.println("Here are your emails " + activeUser.getName() + " :");
         List<Email> emails = ctrEmail.checkInbox();
-        AtomicInteger count = new AtomicInteger();
-        emails.forEach(e -> {
-            String newTag = "";
-            if (!e.isRead()) newTag = " (NEW)";
-            System.out.println("---------------");
-            System.out.println("Message #" + count.incrementAndGet() + newTag);
-            System.out.println("---------------");
-            System.out.println("Title: " + e.getTitle());
-            System.out.println();
-            System.out.println("Message:");
-            System.out.println(e.getMessage());
-            System.out.println();
-            System.out.println("From: " + e.getSender().getName());
-            System.out.println("---------------");
-            e.setIsRead();
-        });
+        if (emails.size() > 0) {
+            System.out.println("Here are your emails " + activeUser.getName() + " :");
+            AtomicInteger count = new AtomicInteger();
+            emails.forEach(e -> {
+                String newTag = "";
+                if (!e.isRead()) newTag = " (NEW)";
+                System.out.println("------------------------------");
+                System.out.println("Message #" + count.incrementAndGet() + newTag);
+                System.out.println("------------------------------");
+                System.out.println("Title: " + e.getTitle());
+                System.out.println();
+                System.out.println("Message:");
+                System.out.println(e.getMessage());
+                System.out.println();
+                System.out.println("From: " + e.getSender().getName());
+                System.out.println("------------------------------");
+                System.out.println();
+                e.setIsRead();
+            });
+        }
+        else {
+            System.out.println("** You have no emails for now **");
+        }
+        System.out.println();
     }
 
     public boolean isLoggedIn() {
@@ -153,11 +161,12 @@ public class EmailView {
     public void printNewEmails() {
         int newEmails = ctrEmail.getNewEmailsNumber();
         if (newEmails == 0)
-            System.out.println("No new emails");
+            System.out.println("** No new emails **");
         else if (newEmails == 1)
-            System.out.println("You have " + newEmails + " new email");
+            System.out.println("** You have " + newEmails + " new email **");
         else
-            System.out.println("You have " + newEmails + " new emails");
+            System.out.println("** You have " + newEmails + " new emails **");
+        System.out.println();
     }
     //endregion
 }

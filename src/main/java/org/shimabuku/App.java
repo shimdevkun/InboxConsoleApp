@@ -17,7 +17,7 @@ public class App
     {
         boolean running = true;
         while (running) {
-            System.out.println("---------------");
+            System.out.println("------------------------------");
             System.out.println();
             UserView userView = new UserView(inboxData);
             userView.welcomeUser();
@@ -31,7 +31,7 @@ public class App
                     emailView.printActions();
                 }
                 System.out.println();
-                System.out.println("---------------");
+                System.out.println("------------------------------");
             }
         }
     }
