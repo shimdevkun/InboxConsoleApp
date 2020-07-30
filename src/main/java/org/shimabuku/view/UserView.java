@@ -18,7 +18,23 @@ public class UserView {
 
     public void welcomeUser() {
         System.out.println("Welcome to the inbox app!");
-        identifyUser();
+    }
+
+    public boolean runInbox() {
+        System.out.println("Press l to login or q to quit");
+        while (scanner.hasNext()) {
+            String option = scanner.next();
+            if (option.equals("l")) {
+                identifyUser();
+                break;
+            }
+            else if (option.equals("q")) {
+                return false;
+            } else {
+                System.out.println("Press l to login or q to quit");
+            }
+        }
+        return true;
     }
 
     private void identifyUser() {
