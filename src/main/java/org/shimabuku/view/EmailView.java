@@ -150,8 +150,8 @@ public class EmailView {
         }
         else {
             System.out.println("** You have no emails for now **");
+            System.out.println();
         }
-        System.out.println();
     }
 
     public boolean isLoggedIn() {
