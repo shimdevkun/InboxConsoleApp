@@ -17,6 +17,8 @@ public class App
     {
         boolean running = true;
         while (running) {
+            System.out.println("---------------");
+            System.out.println();
             UserView userView = new UserView(inboxData);
             userView.welcomeUser();
             running = userView.runInbox();
@@ -27,13 +29,9 @@ public class App
                 emailView.printNewEmails();
                 while (emailView.isLoggedIn()) {
                     emailView.printActions();
-                    System.out.println();
                 }
                 System.out.println();
-                System.out.println();
                 System.out.println("---------------");
-                System.out.println();
-                System.out.println();
             }
         }
     }
