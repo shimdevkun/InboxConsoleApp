@@ -10,7 +10,7 @@ This is a console application that simulates an inbox service. Users can log in,
 
 2. Download or clone the repository
 
-3. Open a terminal window in the repository foler
+3. Open a terminal window in the repository folder
 
 4. Go to the classes folder
 
