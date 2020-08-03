@@ -40,6 +40,7 @@ This is a console application that simulates an inbox service. Users can log in,
 ## Features
 
 - Send email
+
   - Prints all emails of the current user
   - Emails get stored during runtime and get send to the specified receiver
   - Emails get validated. Title, message and receiver are required
@@ -51,3 +52,18 @@ This is a console application that simulates an inbox service. Users can log in,
 
 ## What it looks like
 
+- Log In
+
+  ![Alt Text](./img/login.png)
+
+- Check Inbox
+
+  ![Alt Text](./img/check-inbox-1.png)
+
+- Send Email
+
+  ![Alt Text](./img/send-email.png)
+
+- New + Read Emails
+
+  ![Alt Text](./img/check-inbox-2.png)
